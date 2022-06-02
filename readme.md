@@ -11,7 +11,7 @@ Room3D
 
 <br/>
 
-![Room3D效果展示](./img/show.jpg)   
+![Room3D效果展示](img/show.jpg)   
 
 使用方法
 ---
