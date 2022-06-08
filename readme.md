@@ -9,7 +9,7 @@ Room3D是一款JS插件，它能帮你用纯html/css快速构建3D房间和盒�
 ————  作者：DAN 
 
 ***
-中文文档 &nbsp;&nbsp; | &nbsp;&nbsp; [English Document](readme-en.md) &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO](https://danhu1990.github.io/Room3D/) 
+中文文档 &nbsp;&nbsp; | &nbsp;&nbsp; [English Document](readme-en.md) &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO on gitee](http://dan90s.gitee.io/room3d) &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO on git](https://danhu1990.github.io/Room3D/) 
 
 ---
 ![Room3D效果展示](example/img/show.jpg) 
