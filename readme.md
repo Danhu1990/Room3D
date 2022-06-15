@@ -1,35 +1,35 @@
 # Room3D
 
-## 介绍
+## Introduction
 
 
-Room3D是一款JS插件，它能帮你用纯html/css快速构建3D房间和盒子。  
-这是一个轻量且不依赖任何第三方库的插件，设计它的初衷仅用于帮助开发者快速构建简单布局的3D场景，或者用于简易3D特效。如果你需要构建复杂场景，且对渲染效果要求较高，建议使用基于WebGL的3D库，如threeJs/babylonJs等。  
+Room3D is a javascript plugin which you can use it to create a 3D room or box by html&css so easily.  
+It is light-weight and no need to rely on any other library. We design it just for help developers to quick create some simple 3D scene, or be used for some simple web 3D effects. If you need to create some huge complicated scene in your project, and hope it has a perfect render effect, you may not be content for it. We suggest to use some library which it based on WebGL like threeJs/babylonJs.
   
-————  作者：DAN 
+————  Author: DAN 
 
 ***
-English Document &nbsp;&nbsp; | &nbsp;&nbsp; [中文文档](readme-cn.md) &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO on gitee](http://dan90s.gitee.io/room3d) &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO on git](https://danhu1990.github.io/Room3D/) &nbsp;&nbsp;|&nbsp;&nbsp; [Github仓库](https://github.com/Danhu1990/Room3D) &nbsp;&nbsp;|&nbsp;&nbsp; [Npm Package](https://www.npmjs.com/package/room3d) 
+[English Document](readme.md) &nbsp;&nbsp; | &nbsp;&nbsp; 中文文档 &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO on gitee](http://dan90s.gitee.io/room3d) &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO on git](https://danhu1990.github.io/Room3D/) &nbsp;&nbsp;|&nbsp;&nbsp; [Github Repository](https://github.com/Danhu1990/Room3D) &nbsp;&nbsp;|&nbsp;&nbsp; [Npm Package](https://www.npmjs.com/package/room3d) 
 
 ---
-![Room3D效果展示](docs/img/show.jpg) 
+![Room3D show](docs/img/show.jpg) 
 
-![Room3D效果展示2](docs/img/show2.png)  
+![Room3D show2](docs/img/show2.png)  
 
-## 使用方法
+## Get Started
 
 
-1. 安装插件，你将获得一个名为 `Scene3D` 的构造函数
-   + 通过 `<script src="room3d.js"></script>` 标签引入html文件，或者  
-   + 在模块化开发中，通过 `npm install room3d` 安装插件，然后
-     - 使用 `const Scene3D = require("room3d")` 或者
-     - `import Scene3D from "room3d"` 都能获得 `Scene3D` 构造函数
+1. After installed plugin you can get a constructor named `Scene3D` 
+   + Import plugin with script tag `<script src="room3d.js"></script>` , or  
+   + Install plugin by npm  `npm install room3d` , then
+     - use `const Scene3D = require("room3d")` or
+     - `import Scene3D from "room3d"` to get `Scene3D` constructor.
   
-2. 引入样式文件 `room3d.css`
+2. Import stylesheet `room3d.css`
    
-3. 准备Html元素 `<div id="wraper"><div>` ，选择器可使用id或class。你可以手动为元素设置css `width` 和 `height` ，如果未设置，插件将会为其设置 `widt:100%; height:100%;` 
+3. Create HTML element `<div id="wraper"><div>` , you can use id or class as the css selector. You can also set css rules `width` and `height` for the element. If you don't, the plugin will set the rules `widt:100%; height:100%;` for it.
    
-4. 编写脚本使用配置项创建场景和元素吧  
+4. Now you can write javascript codes to create 3D scene and 3D elements by configurations.  
    
     ```javascript
     let myScene = new Scene3D("#wraper",{
@@ -52,314 +52,312 @@ English Document &nbsp;&nbsp; | &nbsp;&nbsp; [中文文档](readme-cn.md) &nbsp;
       ]
     })
     ```
-## 关系图
+## Relation Diagram
 
-![关系图](docs/img/diagram.png) 
+![Relation Diagram](docs/img/diagram.png) 
 
 ## API
 
-### Scene 场景对象
+### Scene Object
 
-#### 配置项  
+#### Options  
 
-| 属性名 | 值类型 | 默认值 | 说明 |
+| Name | Type | Default | Description |
 | :---- | :----: | :----: | ---- |
-| **width** | string | "1000px" | 场景宽度，必须包含px等单位，不支持百分比 |
-| **depth** | string | "1000px" | 场景进深，必须包含px等单位，不支持百分比 |
-| **offsetVer** | string | "-200px" | 场景垂直方向偏移，负数为向下偏移，正数向上偏移，不支持百分比 |
-| **rotateVer** | string | "70deg" | 场景初始垂直方向旋转角度，必须携带单位deg，负值为反方向旋转 |
-| **rotateHor** | string | "-40deg" | 场景初始水平方向旋转角度，必须携带单位deg，负值为反方向旋转 |
-| **scaleRat** | number | 0.8 | 场景初始缩放比例 |
-| **wheelScale** | boolean | true | 允许使用滚轮缩放场景 |
-| **showGrid** | boolean | true | 是否显示网格 |
-| **perspective** | number | 2000 | 透视系数，不允许负值，默认2000，值越小透视感越强，值越大透视感越弱。建议最小值不低于800，最大值不超过8000。 |
-| **dragRotate** | boolean | true | 允许使用鼠标拖拽旋转场景 |
-| **rotateFixed** | string | "aroundRestric" | 旋转限制，仅在 `dragRotate` 设置为 `true` 有效，可选值：<br/> "`around`" ：可水平、垂直任意旋转。 <br/> "`aroundRestric`" ：带有限制的任意旋转，其中垂直旋转只允许0-90度，最终效果表现为，不能将场景旋转至倒立。<br/> "`horizontal`" ：只允许水平任意旋转。<br/> "`vertical`" ：只允许垂直任意旋转<br/> "`verticalRestric`" ：带有限制的垂直旋转。|
-| **rooms** | array | [ ] | 房间配置对象，用于配置Room房间对象 |
+| **width** | string | "1000px" | The value must contain unit. Percentates are NOT supported|
+| **depth** | string | "1000px" | The value must contain unit. Percentates are NOT supported |
+| **offsetVer** | string | "-200px" | The initial vertical offset, negative means offset down, positive means offset up. Percentates are NOT supported |
+| **rotateVer** | string | "70deg" | The initial vertical rotation of scene, it must be contain unit "deg", negative means reversed |
+| **rotateHor** | string | "-40deg" | The initial horizontal rotation of scene, it must be contain unit "deg", negative means reversed |
+| **scaleRat** | number | 0.8 | The initial scale of scene |
+| **wheelScale** | boolean | true | Allow scale scene by mousewheel |
+| **showGrid** | boolean | true | Show grid |
+| **perspective** | number | 2000 | Recommend set the value between 800 to 8000, the bigger number the stronger sense of perspective |
+| **dragRotate** | boolean | true | Allow rotate scene by mousedrag |
+| **rotateFixed** | string | "aroundRestric" | It works only when the `dragRotate` set `true` . Optional value:<br/> "`around`" , "`aroundRestric`" (Around rotation with restrictions. you can just rotate between 0-90 degree on vertical direction. Specifically you can't rotate the scene upside down) "`horizontal`", "`vertical`" , "`verticalRestric`" (Vertical rotation with restrictions)|
+| **rooms** | array | [ ] | Room configurations array, be used to create Room |
 
-#### 方法  
+#### Methods  
   
-创建一个Scene对象 `let Scene = new Scene3D("#Scene1",{options...})` ，该对象将可以使用以下方法：
+Create a Scene object `let Scene = new Scene3D("#Scene1",{options...})` , it can use the methods below:
 
 + **`Scene.showGrid( boolean )`**
-  - **参数**\
-    boolean {boolean} | `必须` | 传true表示显示，false表示隐藏
+  - **Parameters**\
+    boolean {boolean} | `Required` | True means visible, false means hidden
 
-  - **返回值**\
-    返回当前Scene对象，可用于链式调用
+  - **Returns**\
+    Return this current Scene object, which be use for chain calling.
 
-  - **说明**\
-    用于显示或隐藏场景的网格
+  - **Details**\
+    To show or hide the grid of scene.
       
 + **`Scene.resetScene()`**
-  - **参数**\
+  - **Parameters**\
     \-
 
-  - **返回值**\
-    返回当前Scene对象，可用于链式调用
+  - **Returns**\
+    Return this current Scene object, which be use for chain calling.
     
-  - **说明**\
-    重置场景旋转和缩放状态至初始值
+  - **Details**\
+    Reset the scene rotation and scale to initial status.
 
 + **`Scene.buildRoom( options )`**
-  - **参数**\
-    options {object} | `可选` | 配置对象，参照Room配置项
+  - **Parameters**\
+    options {object} | `Optional` | Options object, refer to Room configurate options
 
-  - **返回值**\
-    返回被创建的Room对象
+  - **Returns**\
+    Return the new Room object
     
-  - **说明**\
-    用传入的配置参数，手动创建Room，如果不传options参数，则使用默认配置创建Room
+  - **Details**\
+    Use the options that passed in to create room manually. If it's empty, will use the default options.
 
 
 ***
 
-### Room 房间对象
+### Room Object
 
-#### 配置项  
+#### Options  
 
-| 属性名 | 值类型 | 默认值 | 说明 |
+| Name | Type | Default | Description |
 | :---- | :----: | :----: | ---- |
-| **className** | string | "" | 房间类名，将使用 `"Room3D_room_"` 进行拼接，用作房间容器的class类名 |
-| **width** | string | "100%" | 房间宽度，必须包含px等单位，支持百分比 |
-| **depth** | string | "100%" | 房间进深，必须包含px等单位，支持百分比 |
-| **height** | string | "300px" | 房间高度，必须包含px等单位，不支持百分比 |
-| **left** | string | "auto" | 房间距场景左边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **top** | string | "auto" | 房间距场景后边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **right** | string | "auto" | 房间距场景右边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **bottom** | string | "auto" | 房间距场景前边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **showWall** | boolean | true | 是否显示墙壁 |
-| **wallColor** | string | "#ddd" | 墙壁颜色，可使用css支持的所有色值类型 |
-| **wallOpacity** | number | 0.9 | 墙壁透明度 |
-| **wallBackFace** | string | "hidden" | 墙背面是否透明，可选参数: `"hidden"` , `"visible"` |
-| **showLine** | boolean | true | 是否显示墙角线 |
-| **lineColor** | string | "#666" | 墙角线颜色，可使用css支持的所有色值类型 |
-| **lineOpacity** | number | 1 | 墙角线透明度 |
-| **lineWidth** | string | "1px" | 墙角线粗细 |
-| **showFloor** | boolean | true | 是否显示地板 |
-| **floorColor** | string | "#444" | 地板颜色，可使用css支持的所有色值类型 |
-| **floorOpacity** | number | 1 | 地板透明度 |
-| **boxes** | array | [ ] | 房间内Box盒子对象 |
+| **className** | string | "" | That will be use for Room dom element's class name after concatenated with `"Room3D_room_"` . |
+| **width** | string | "100%" | The value must contain unit. Percentates are supported |
+| **depth** | string | "100%" | The value must contain unit. Percentates are supported |
+| **height** | string | "300px" | The value must contain unit. Percentates are NOT supported |
+| **left** | string | "auto" | Distance from Room to the left edge of Scene, the value must contain unit. You can also set percentates or `"auto"` as the value. |
+| **top** | string | "auto" | Distance from Room to the back edge of Scene, the value must contain unit. You can also set percentates or `"auto"` as the value. |
+| **right** | string | "auto" | Distance from Room to the right edge of Scene, the value must contain unit. You can also set percentates or `"auto"` as the value. |
+| **bottom** | string | "auto" | Distance from Room to the fore edge of Scene, the value must contain unit. You can also set percentates or `"auto"` as the value. |
+| **showWall** | boolean | true | Show wall |
+| **wallColor** | string | "#ddd" | Wall color |
+| **wallOpacity** | number | 0.9 | Wall opacity |
+| **wallBackFace** | string | "hidden" | Set style rule `backface-visibility` for wall element, the optional values are `"hidden"` and `"visible"` |
+| **showLine** | boolean | true | Show corner line |
+| **lineColor** | string | "#666" | Corner line color, you can set all the color types which supported by css |
+| **lineOpacity** | number | 1 | Corner line opacity |
+| **lineWidth** | string | "1px" | Corner line width |
+| **showFloor** | boolean | true | Show floor |
+| **floorColor** | string | "#444" | Floor color, you can set all the color types which supported by css |
+| **floorOpacity** | number | 1 | Floor opacity |
+| **boxes** | array | [ ] | Box objects configurations array |
 
-其中 `top` `right` `bottom` `left` 用于定位房间在场景中的水平位置，一般 `left` 和 `right` 只需要设置其中一项即可。`top` 和 `bottom` 同理\
-关于宽度、进深、高度如何定义，可查看文档顶部的图示。
+The options `top` `right` `bottom` `left` are use for locate Room's horizontal position relative to the Scene, you just need to set only one of `left` and `right` . And the same as `top` and `bottom` .\
+For the definitions of width, depth and height, you can see the diagram at the top of this document.
 
-#### 方法
+#### Methods
 
-创建一个Room对象 `let Room = Scene.buildRoom()` 。如果是通过配置对象生成的Room，则可以通过 `let Room = Scene.rooms[index]` 获得Room对象，该对象可以使用以下方法：
+Create and get a Room object by `let Room = Scene.buildRoom()` . If you want to get a existing Room, you can get it by `let Room = Scene.rooms[index]` . It can use the methods below:
 
 + **`Room.showFloor( boolean )`**
 + **`Room.showWall( boolean )`**
 + **`Room.showLine( boolean )`** 
-  - **参数**\
-    boolean {boolean} | `必须` | 传true表示显示，false表示隐藏
+  - **Parameters**\
+    boolean {boolean} | `Required` | True means visible, false means hidden
   
-  - **返回值**\
-    返回当前Room对象，可用于链式调用
+  - **Returns**\
+    Return this Room object that be use for chain calling
 
-  - **说明**\
-    用于显示或隐藏Room的Floor地板、Wall墙壁、Line墙角线。
+  - **Details**\
+    Be use for show or hide Floor, Walls and Corner Lines.
 
 + **`Room.backface( value )`** 
-  - **参数**\
-    value {string} | `必须` | value可以为 "hidden" 或 "visible" 
+  - **Parameters**\
+    value {string} | `Required` | The optional values are `"hidden"` and `"visible"` .
   
-  - **返回值**\
-    返回当前Room对象，可用于链式调用
+  - **Returns**\
+    Return this Room object that be use for chain calling.
 
-  - **说明**\
-    用于设置墙壁元素的 `backface-visibility` 样式，具体表现是：设置为"hidden"，朝向屏幕方向的墙壁将变成透明的，从而可以看见房间内的元素，且不会遮挡鼠标与房间内元素的交互。
+  - **Details**\
+    Be use for set the value of css rule `backface-visibility` of Wall elements. Specifically, If set `"hidden"`, the side which facing the screen of wall will become transparent. So that the elements in the Room can be seen, and it does not block the mouse events on this elements in the Room.
 
 + **`Room.buildDoor( wall , doorOptions )`**
-  - **参数**\
-    wall {string} | `必须` | wall参数可选值为 `"left"` , `"right"` , `"fore"` , `"back"`<br/>
-    doorOptions {object} | `可选` | 门的配置项对象，详细配置参数见下方的Door配置项。
+  - **Parameters**\
+    wall {string} | `Required` | The optional values are: `"left"` , `"right"` , `"fore"` and `"back"`<br/>
+    doorOptions {object} | `Optional` | Door object configurations, refer to the configurations below.
 
-  - **返回值**\
-    返回被创建的Door对象
+  - **Returns**\
+    Return the new Door object
     
-  - **说明**\
-    用传入的配置参数，手动创建Door。
-    ##### Door 配置项
-    | 属性名 | 值类型 | 默认值 | 说明 |
+  - **Details**\
+    Use the options that passed in to create a Door manually
+    ##### Door Options
+    | Name | Type | Default | Description |
     | :---- | :----: | :----: | ---- |
-    | **className** | string | "" | 门类名，将使用 `"Room3D_door_"` 进行拼接，用作门容器的class类名 |
-    | **width** | string | "60px" | 门宽度，必须包含px等单位，允许使用百分比，不允许负值 |
-    | **height** | string | "120px" | 门高度，必须包含px等单位，允许使用百分比，不允许负值 |
-    | **left** | string | "50%" | 门距墙左边缘距离，可设置为包含单位的数值或百分比值 |
-    | **right** | string | \- | 门距墙右边缘距离，可设置为包含单位的数值或百分比值，如果希望以 `right` 值作为定位，必须将 `left` 设置为 `auto` |
-    | **show** | boolean | true | 是否显示门，如果为 `false` ，则只能看到门洞。 |
-    | **type** | string | "single left" | 门类型，可选参数：`"single left"` 单开门，门轴在左侧、 `"single right"` 单开门，门轴在右侧、 `"double"` 双开门。 |
-    | **openSide** | string | "outside" | 开门的方向，`"outside"` 朝外开门、 `"inside"` 朝内开门。 |
-    | **color** | string | "#634A42" | 颜色色值，设置门板的颜色。 |
-    | **doorFrameWidth** | string | "3px" | 门框宽度，可以为包含单位的数值，不允许百分比。 |
-    | **doorFrameColor** | string | "#3B2A24" | 门框颜色 |
-    ##### Door 方法 
-    使用 `let Door = Room.buildDoor( wall , doorArray )[index]` 或者 `let Door = Room.walls[wall].doors[index]` 获取Door对象，该对象可以使用以下方法：
-    + **`Door.openDoor()`** 将门打开
-    + **`Door.closeDoor()`** 将门关闭
+    | **className** | string | "" | That will be use for Door dom element's class name after concatenated with `"Room3D_door_"`  |
+    | **width** | string | "60px" | The value must contain unit, Percentages are supported |
+    | **height** | string | "120px" | The value must contain unit, Percentages are supported |
+    | **left** | string | "50%" | Distance from Door to the left edge of Wall, the value must contain unit. Percentages are supported. |
+    | **right** | string | \- | Distance from Door to the right edge of Wall, the value must contain unit. Percentages are supported. Notice that if you want to position the Door with `right` option, you must set `"auto"` for the `left` option|
+    | **show** | boolean | true | Show Doors, If set to `false` , you will only see a rectangular hole in the wall. |
+    | **type** | string | "single left" | Type of Door. Optional values are: `"single left"` single Door with left shaft, `"single right"` single Door with right shaft, `"double"` double Doors. |
+    | **openSide** | string | "outside" | Direction of Door opening. Optional values are: `"outside"` and `"inside"`  |
+    | **color** | string | "#634A42" | Color of Door. |
+    | **doorFrameWidth** | string | "3px" | The width of Door frame, the value must contain unit, Percentages are NOT supported. |
+    | **doorFrameColor** | string | "#3B2A24" | Color of Door frame |
+    ##### Door Methods 
+    Use `let Door = Room.buildDoor( wall , doorArray )[index]` or `let Door = Room.walls[wall].doors[index]` to get Door object, it can use the methods below:
+    + **`Door.openDoor()`** Open the door
+    + **`Door.closeDoor()`** Close the door
 
 + **`Room.buildBox( options )`**
-  - **参数**\
-    options {object} | `可选` | 配置对象，参数见Box配置项
+  - **Parameters**\
+    options {object} | `Optional` | Options object, refer to Box configurate options
 
-  - **返回值**\
-    返回被创建的Box对象
+  - **Returns**\
+    Return the new Box object
     
-  - **说明**\
-    用传入的配置参数，手动创建Box，如果不传options参数，则使用默认配置创建Box
+  - **Details**\
+    Use the options that passed in to create Box manually. If it's empty, will use the default options.
 
 + **`Room.destroy()`**
-  - **参数**\
+  - **Parameters**\
     \-
 
-  - **返回值**\
+  - **Returns**\
     \-
     
-  - **说明**\
-    销毁Room实例对象
+  - **Details**\
+    Destroy Room object
 
 ***
 
-### Box 盒子对象
+### Box Object
 
-#### 配置项  
+#### Options  
 
-| 属性名 | 值类型 | 默认值 | 说明 |
+| Name | Type | Default | Description |
 | :---- | :----: | :----: | ---- |
-| **className** | string | "" | 盒子类名，将使用 `"Box3D_box_"` 进行拼接，用作盒子容器的class类名 |
-| **name** | string | "" | 盒子名称，将显示在Marker标注上 |
-| **width** | string | "100%" | 盒子宽度，必须包含px等单位，支持百分比 |
-| **depth** | string | "100%" | 盒子进深，必须包含px等单位，支持百分比 |
-| **height** | string | "100%" | 盒子高度，必须包含px等单位，支持百分比 |
-| **left** | string | "auto" | 盒子距房间左边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **top** | string | "auto" | 盒子距房间后边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **right** | string | "auto" | 盒子距房间右边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **bottom** | string | "auto" | 盒子距房间前边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **offsetZ** | string | "0px" | 垂直偏移距离，必须包含单位，不允许百分比，负值表示向下偏移 |
-| **rotateX** | string | "0deg" | X轴旋转角度，必须包含单位deg |
-| **rotateY** | string | "0deg" | Y轴旋转角度，必须包含单位deg |
-| **rotateZ** | string | "0deg" | Z轴旋转角度，必须包含单位deg |
-| **opacity** | number | 1 | 盒子透明度 |
-| **color** | string | "#999" | 盒子颜色，可使用css支持的所有色值类型 |
-| **showLine** | boolean | true | 是否显示边角线 |
-| **lineColor** | string | "#666" | 边角线颜色，可使用css支持的所有色值类型 |
-| **lineOpacity** | number | 1 | 边角线透明度 |
-| **lineWidth** | string | "1px" | 边角线粗细 |
-| **marker** | object | { } | 盒子标注配置项 |
+| **className** | string | "" | That will be use for Box dom element's class name after concatenated with `"Box3D_box_"` . |
+| **name** | string | "" | Box name that will be displayed in Marker content |
+| **width** | string | "100%" | The value must contain unit. Percentates are supported |
+| **depth** | string | "100%" | The value must contain unit. Percentates are supported |
+| **height** | string | "100%" | The value must contain unit. Percentates are supported |
+| **left** | string | "auto" | Distance from Box to the left edge of Room, the value must contain unit. You can also set percentates, negatives or `"auto"` as the value |
+| **top** | string | "auto" | Distance from Box to the back edge of Room, the value must contain unit. You can also set percentates, negatives or `"auto"` as the value |
+| **right** | string | "auto" | Distance from Box to the right edge of Room, the value must contain unit. You can also set percentates, negatives or `"auto"` as the value |
+| **bottom** | string | "auto" | Distance from Box to the fore edge of Room, the value must contain unit. You can also set percentates, negatives or `"auto"` as the value |
+| **offsetZ** | string | "0px" | Vertical offset, the value must contain unit. negative means offset down, positive means offset up. Percentates are NOT supported |
+| **rotateX** | string | "0deg" | The angle of rotation around X axis, must contain unit "deg" |
+| **rotateY** | string | "0deg" | The angle of rotation around Y axis, must contain unit "deg" |
+| **rotateZ** | string | "0deg" | The angle of rotation around Z axis, must contain unit "deg" |
+| **opacity** | number | 1 | Box opacity |
+| **color** | string | "#999" | Box color, you can set all the color types which supported by css |
+| **showLine** | boolean | true | Show Box border |
+| **lineColor** | string | "#666" | Box border color, you can set all the color types which supported by css |
+| **lineOpacity** | number | 1 | Box border opacity |
+| **lineWidth** | string | "1px" | Box border width |
+| **marker** | object | { } | Marker configurations |
 
-  其中 `top` `right` `bottom` `left` 用于定位盒子在房间中的水平位置，一般 `left` 和 `right` 只需要设置其中一项即可。`top` 和 `bottom` 同理
+  The options `top` `right` `bottom` `left` are use for locate Box's horizontal position relative to the corresponding Room, you just need to set only one of `left` and `right` . And the same as `top` and `bottom` .
 
-#### 方法 
+#### Methods 
 
-创建一个Box对象 `let Box = Room.buildBox()` 。如果是通过配置对象生成的Box，则可以通过 `let Box = Room.boxes[index]` 获得Box对象，该对象可以使用以下方法：
+Create a Marker object by `let Box = Room.buildBox()` then get it. If you want to get a existing Marker, you can get it by `let Box = Room.boxes[index]` . It can use the methods below:
 
 + **`Box.showLine( boolean )`** 
 + **`Box.showMarker( boolean )`** 
-  - **参数**\
-    boolean {boolean} | `必须` | 传true表示显示，false表示隐藏
+  - **Parameters**\
+    boolean {boolean} | `Required` | Pass in true to show, and false to hide
   
-  - **返回值**\
-    返回当前Box对象，可用于链式调用
+  - **Returns**\
+    Return this Box object, which be use for chain calling
 
-  - **说明**\
-    用于显示或隐藏Box的Line边角线、Marker标注。
+  - **Details**\
+    Be use for show or hide the border line and Marker.
 
 + **`Box.buildMarker( options )`**
-  - **参数**\
-    options {object} | `可选` | 配置对象，参数见Marker配置项
+  - **Parameters**\
+    options {object} | `Optional` | Marker configurations
 
-  - **返回值**\
-    返回被创建的Marker对象
+  - **Returns**\
+    Return the new Marker
     
-  - **说明**\
-    每一个Box对象被创建的时候会顺便自动创建相应的Marker对象，所以该方法实际上是先销毁原有的标注，再用新的配置项重新创建一个标注。如果你只是希望改变标注的一些数据，可以使用Marker对象的 `updateMarker()` 方法。
+  - **Details**\
+    There is a correspooding Marker object is create automatically at each Box object created. So the method `updateMarker()` actually destroys the original Marker first, and then creates a new Marker with the new configurations. If you just want to update content of Marker, you can use the method `updateMarker()` of Marker object.
 
 + **`Box.destroy()`**
-  - **参数**\
+  - **Parameters**\
     \-
 
-  - **返回值**\
+  - **Returns**\
     \-
     
-  - **说明**\
-    销毁Box实例对象
+  - **Details**\
+    Destroy Box object
 
 ***
 
-### Marker 标注对象
+### Marker Object
 
-#### 配置项  
+#### Options  
 
-| 属性名 | 值类型 | 默认值 | 说明 |
+| Name | Type | Default | Description |
 | :---- | :----: | :----: | ---- |
-| **width** | string | "auto" | 标注宽度，必须包含px等单位，不允许百分比和负值，默认自适应 |
-| **height** | string | "auto" | 标注高度，必须包含px等单位，不允许百分比和负值，默认自适应 |
-| **left** | string | expression | 标注距场景左边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **top** | string | expression | 标注距场景后边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **right** | string | "auto" | 标注距场景右边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **bottom** | string | "auto" | 标注距场景前边缘距离，可设置为包含单位的数值、百分比或 `auto` |
-| **offsetZ** | string | expression | 标注在场景中的垂直高度，可设置为包含单位的数值，不允许百分比、 `auto`或负值。 |
-| **show** | boolean | true | 是否显示标注 |
-| **lineColor** | string | "#666" | 标注连接线颜色 |
-| **lineWidth** | string | "1px" | 标注连接线宽度 |
-| **fontSize** | string | "14px" | 标注默认文字大小 |
-| **fontColor** | string | "#ffffff" | 标注文字颜色 |
-| **backgroundColor** | string | "rgba(36, 212, 174, 0.9)" | 标注背景色,Marker对象没有提供opacity属性，如果需要让标注透明，可以使用带有alpha通道的色值。 |
-| **content** | string | "\<h4\>\{\{params.title\}\}\<\/h4>" | 标注内容模板，可使用{{params.属性名}}的形式作为占位符，用于接收params属性传入的参数。你可以使用html字符串编辑更丰富的标注模板 |
-| **params** | object |\{title:box.options.name \|\| "Marker"\}| 保存需要被传递的参数，用于解析标注内容模板，默认会将与之绑定的Box对象配置项中的name值传递进来。 |
+| **width** | string | "auto" | The value must contain unit. Percentates are NOT supported. |
+| **height** | string | "auto" | The value must contain unit. Percentates are NOT supported. |
+| **left** | string | expression | Distance from Marker center to the left edge of scene, the value must contain unit. You can also set percentates, negatives or `"auto"` as the value |
+| **top** | string | expression | Distance from Marker center to the back edge of scene, the value must contain unit. You can also set percentates, negatives or `"auto"` as the value|
+| **right** | string | "auto" |Distance from Marker center to the right edge of scene, the value must contain unit. You can also set percentates, negatives or `"auto"` as the value|
+| **bottom** | string | "auto" | Distance from Marker center to the fore edge of scene, the value must contain unit. You can also set percentates, negatives or `"auto"` as the value|
+| **offsetZ** | string | expression | Suspension height of Marker, The value must contain unit. Percentage and `"auto"` are NOT supported. |
+| **show** | boolean | true | Show Marker |
+| **lineColor** | string | "#666" | Marker connection line color |
+| **lineWidth** | string | "1px" | Marker connection line color width |
+| **fontSize** | string | "14px" | Marker content font size |
+| **fontColor** | string | "#ffffff" | Marker content font color |
+| **backgroundColor** | string | "rgba(36, 212, 174, 0.9)" | Background color of Marker, since not provide opacity option with Marker object configuration, If you need translucent effect, you can set the color with alpha channel |
+| **content** | string | "\<h4\>\{\{params.title\}\}\<\/h4>" | Marker content template, which can use the form {{params.propertyName}} as a placeholder to receive arguments passed in by property "params". You can edit richer templates using HTML strings. |
+| **params** | object |\{title:box.options.name \|\| "Marker"\}| Save the parameters that need to be passed, It be use for parse Marker content template. There is a property named "title" by default, which takes name option of the box which bound this Marker as value |
 
-由于在dom结构中标注是直接创建在场景中，所以其 `top` `right` `bottom` `left` 是相对于场景的定位，同样 `left` 和 `right` 以及`top` 和 `bottom`只需要设置其中一项即可。并且由于 `left` 和 `top` 的默认值是一个表达式，用于将标注创建在盒子的正上方，所以如果需要用 `right` 和 `bottom` 进行定位，则必须将对应的 `left` 和 `top` 值设置为 `auto` 。 
+Since in DOM structure the Marker elements are created directly in scene element, so their `top` `right` `bottom` `left` are positioned relative to the scene element. You just set only one between `left` and `right` . And the same as `top` and `bottom`. And since the default value of `left` and `top` is an expression that makes the Marker be created right above the box. So if you want to use `right` and `bottom` for positioning, you must set the corresponding `left` and `top` values to `auto` . 
 
-#### 方法 
+#### Methods 
 
-创建一个Marker对象并获取它 `let Marker = Box.buildMarker()` 。如果要获取已经生成的Marker，则可以通过 `let Marker = Box.marker` 获得，该对象可以使用以下方法：
+Create and get a Marker object by `let Marker = Box.buildMarker()` . If you want to get a existing Marker, you can get it by `let Marker = Box.marker` . It can use the methods below:
 
 + **`Marker.updateMarker( params )`** 
-  - **参数**\
-    params {object} | `必须` | params对象必须包含与标注content模板相匹配的属性，以及需要更新的值。
+  - **Parameters**\
+    params {object} | `Required` | The params object must contain properties that match the Marker content template and the values that need to be updated.
   
-  - **返回值**\
-    返回当前Marker对象
+  - **Returns**\
+    Return this Marker object
 
-  - **说明**\
-    用于更新Marker内容模板。
+  - **Details**\
+    Be use for update Marker content template.
 
 + **`Marker.destroy()`**
-  - **参数**\
+  - **Parameters**\
     \-
 
-  - **返回值**\
+  - **Returns**\
     \-
     
-  - **说明**\
-    销毁Marker实例对象
+  - **Details**\
+    Destroy Marker object
 
 ***
 
-## 注意事项
+## Notice
 
 
-1. 所有的长度及距离数值必须使用统一的单位，推荐使用px，否则会出现一些因为单位换算而导致的bug
+1. All the options of length and distance must set the same unit, "px" is recommended. Otherwise there will be some bugs due to the unit conversion. 
    
-2. 两个紧贴相邻的Room如果需要在紧贴着的墙上创建门，需要在两个Room上对应的墙上都使用 `buildDoor()` 方法，在对称的位置创建门，同时将其中一个门设置为不可见，即可实现。
+2. If two immediately adjacent rooms that need to create doors on adjacent walls, you need to use `buildDoor()` method for the corresponding wall objects of both rooms on the symmetrical positions while set one of the doors invisable, then you can achieve it.
    
-3. 你还可以使用css为场景内的各种元素设置 `background-image` 样式，模仿贴图效果，从而实现更丰富的场景。
+3. You can also add css rule `background-image` for various elements in the scene, simulate mapping effect to achieve richer scene
    
    
-## NPM包版本与更新
+## NPM Package Versions & Updates
 
-+ `1.0.0` 发布时间：2022/6/8
-  - `1.0.1` & `1.0.2` 发布时间：2022/6/8
-    + 修改说明文档
-  - `1.1.0` 发布时间：2022/6/15
-    + Marker 对象添加 `scene` 属性，它的值指向当前场景对象；
-    + Box 对象增加 `.destroy()` 方法；
-    + Room 对象增加 `.destroy()` 方法。
++ `1.0.0` Release date: 2022/6/8
+  - `1.0.1` & `1.0.2` Release date：2022/6/8
+    + Modify readme.md
+  - `1.1.0` Release date: 2022/6/15
+    + Marker object add property `scene` , its value points to the current Scene objec.
+    + Box object add method `.destroy()` 
+    + Room object add method `.destroy()` 
 
-
-
-## 其他
+## Others
 
 
-![计算图示](docs/img/other.png)
+![Calculation diagram](docs/img/other.png)
