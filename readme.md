@@ -9,7 +9,7 @@ It is light-weight and no need to rely on any other library. We design it just f
 ————  Author: DAN 
 
 ***
-[English Document](readme.md) &nbsp;&nbsp; | &nbsp;&nbsp; 中文文档 &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO on gitee](http://dan90s.gitee.io/room3d) &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO on git](https://danhu1990.github.io/Room3D/) &nbsp;&nbsp;|&nbsp;&nbsp; [Github Repository](https://github.com/Danhu1990/Room3D) &nbsp;&nbsp;|&nbsp;&nbsp; [Npm Package](https://www.npmjs.com/package/room3d) 
+[中文文档](readme-cn.md) &nbsp;&nbsp; | &nbsp;&nbsp; English Document &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO on gitee](http://dan90s.gitee.io/room3d) &nbsp;&nbsp;|&nbsp;&nbsp; [DEMO on git](https://danhu1990.github.io/Room3D/) &nbsp;&nbsp;|&nbsp;&nbsp; [Github Repository](https://github.com/Danhu1990/Room3D) &nbsp;&nbsp;|&nbsp;&nbsp; [Npm Package](https://www.npmjs.com/package/room3d) 
 
 ---
 ![Room3D show](docs/img/show.jpg) 
