@@ -1,7 +1,7 @@
 {
   "name": "room3d",
-  "version": "1.0.2",
-  "description": "Room3D is a javascript plugin which you can use it to quickly create a 3D room or box by html&css. - Room3D是一款JS插件，它可以帮你用纯html/css快速构建3D房间或盒子。",
+  "version": "1.1.2",
+  "description": "Room3D is a javascript plugin which you can use it to create a 3D room or box by html&css so easily.  - Room3D是一款JS插件，它可以帮你用纯html/css快速构建3D房间或盒子。",
   "main": "lib/js/room3d.js",
   "keywords": [
     "3d",
